@@ -2,22 +2,24 @@
 """
 Name: Rasheed Shittu
 Course:MAE 5353
-Task: Homework 1-Module C 
+Task: Homework 1-Module F 
 Description: This Python script is written to use Pandas to read in data and make a plot using Matplotlib
-Question 3
+
 """
 
 #Importing Pandas and Matplotlib modules
 import pandas as pd
 from matplotlib import pyplot as plt
 
+input_file_path = "MAE_5353_VersionControl/Revisiting_Pandas_Matplotlib/"
+output_file_path = "MAE_5353_VersionControl/Revisiting_Pandas_Matplotlib/"
 #Name of the columns which will be given to the data read in
 column_names = ["Ambient Temperature (°C)", "Ambient Temperature (°F)", "Ambient Temperature (K)", "EER (Btu/Wh)", "COP (W/W)"]
 
 # Reading in the data from xlsx file
-steady_state_df = pd.read_excel("PerformanceData_Unitxx_RasheedShittu.xlsx", sheet_name= 'SteadyState', skiprows=0, header=2, names = column_names)
+steady_state_df = pd.read_excel(input_file_path + 'PerformanceData_Unitxx_RasheedShittu.xlsx', sheet_name= 'SteadyState', skiprows=0, header=2, names = column_names)
 
-uncertainty_df = pd.read_excel("PerformanceData_Unitxx_RasheedShittu.xlsx", sheet_name= 'OverallUncertainties', skiprows=0, header=2, names = column_names)
+uncertainty_df = pd.read_excel(input_file_path + 'PerformanceData_Unitxx_RasheedShittu.xlsx', sheet_name= 'OverallUncertainties', skiprows=0, header=2, names = column_names)
 
 # Get the ambient temperature in Farenheint from the steady state dataframe 
 T_amb_F = steady_state_df['Ambient Temperature (°F)']   #assigning primary x-axis values (ambient temp oF)
@@ -79,7 +81,7 @@ ax4.set_yticks(ax1.get_yticks()[1:-1])
 ax4.set_yticklabels([f"{f*3.41:.1f}" for f in ax1.get_yticks()[1:-1]])
 
 #Save the plot
-plt.savefig("MAE5353_HW.png", dpi= 300, bbox_inches='tight')
-
+plt.savefig(output_file_path + "MAE5353_HW.png", dpi= 300, bbox_inches='tight')
+plt.savefig(output_file_path + "MAE5353_HW.svg", bbox_inches='tight')
 #Show plot
 plt.show()
