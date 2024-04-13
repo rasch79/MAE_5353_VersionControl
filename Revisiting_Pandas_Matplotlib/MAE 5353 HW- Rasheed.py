@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
 """
 Name: Rasheed Shittu
 Course:MAE 5353
 Task: Homework 1-Module F
-Description: This Python script is written to use Pandas to read in data and make a plot using Matplotlib
+Description: This Python script is written to use Pandas
+to read in data and make a plot using Matplotlib
 
 """
 
@@ -15,7 +15,23 @@ from matplotlib import pyplot as plt
 
 
 def create_performance_plot(source_file, plot_fname, dpi=300):
+    """
 
+
+    Parameters
+    ----------
+    source_file : str
+        The path to the Excel file containing performance data.
+    plot_fname : str
+        The base filename (without extension) for the saved plot files.
+    dpi : int, optional
+        The resolution of the saved images in dots per inch. The default is 300. The default is 300.
+
+    Returns
+    -------
+    None.
+
+    """
     # Name of the columns which will be given to the data read in
     column_names = [
         "Ambient Temperature (°C)",
@@ -41,15 +57,15 @@ def create_performance_plot(source_file, plot_fname, dpi=300):
 
     # Get the ambient temperature in Farenheint from the steady state dataframe
     # assigning primary x-axis values (ambient temp oF)
-    T_amb_F = steady_state_df['Ambient Temperature (°F)']
+    t_amb_f = steady_state_df['Ambient Temperature (°F)']
     # Get the ambient temperature uncertainty values in Farenheint from the
     # uncertainty dataframe
-    T_amb_err_F = uncertainty_df['Ambient Temperature (°F)']
+    t_amb_err_f = uncertainty_df['Ambient Temperature (°F)']
     # Get the COP values in the COP column of the steady state dataframe
-    COP = steady_state_df['COP (W/W)']
+    cop = steady_state_df['COP (W/W)']
     # Get the COP uncertainty values in the COP column of the uncertainty
     # dataframe
-    COP_err = uncertainty_df['COP (W/W)']
+    cop_err = uncertainty_df['COP (W/W)']
 
     # Create a figure and a subplot of COP vs ambient temperature in the
     # primary axis
@@ -57,10 +73,10 @@ def create_performance_plot(source_file, plot_fname, dpi=300):
 
     # Create a scatter plot with error bar
     ax1.errorbar(
-        T_amb_F,
-        COP,
-        xerr=T_amb_err_F,
-        yerr=COP_err,
+        t_amb_f,
+        cop,
+        xerr=t_amb_err_f,
+        yerr=cop_err,
         c='tab:blue',
         fmt='s',
         ecolor='tab:blue',
